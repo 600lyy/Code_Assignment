@@ -7,6 +7,7 @@ public class ProductDesign {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+        // Run the unit_tests 
 		UnitTest.runTestItems();
 	}
 	
@@ -16,6 +17,9 @@ public class ProductDesign {
 }
 
 abstract class Product {
+    /*
+     * Abstract class for any prudct to inherit from
+     */
 	String mName;
 	double mPrice;
 	TreeMap<String, Object> mProductAttribute;
