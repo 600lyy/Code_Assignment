@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {
+    background-color: lightblue;
+}
+button {
+  width:200px;
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script>
+$(document).ready(function(){
+    $("button").click(function() {
+        var people = [];
+        $.getJSON('Data.json', function(data) {
+            $.each(data.Movies, function(i, f) {
+                var tblRow = "<tr>" + "<td>" + f.Title + "</td>" +
+                "<td>" + f.Year + "</td>" + "<td>" + f.Rated + "</td>" + "<td>" + f.Released + "</td>" +
+                "<td>" + f.Runtime + "</td>" + "<td>" + f.Genre + "</td>" + "<td>" + f.Director + "</td>" +
+                "<td>" + f.Writer + "</td>" + "<td>" + f.Actors + "</td>" + "<td>" + f.Plot + "</td>" +
+                 "<td>" + f.Language + "</td>" + "<td>" + f.Country + "</td>" + "<td>" + f.Awards + "</td>" +
+                 "<td>" + f.Poster + "</td>" + "<td>" + f.Metascore + "</td>" + "<td>" + f.imdbRating + "</td>" +
+                 "<td>" + f.imdbVotes + "</td>" + "<td>" + f.imdbID + "</td>" + "<td>" + f.Type + "</td>" +
+                 "<td>" + f.Response + "</td>" + "</tr>"
+                $(tblRow).appendTo("#userdata tbody");
+            });
+
+        });
+    });
+});
+</script>
+
+<body>
+<h1>Movie List</h1>
+<button>Display Movies</button>
+<input type="text" id="myInput" onkeyup="countryFunction()" placeholder="Search for countries.." title="Type in a country">
+<div class="wrapper">
+<div class="profile">
+   <table id= "userdata" border="2">
+       <thead>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rating</th>
+            <th>Release</th>
+            <th>Runtime</th>
+            <th>Genre</th>
+            <th>Director</th>
+            <th>Writer</th>
+            <th>Actors</th>
+            <th>Plot</th>
+            <th>Language</th>
+            <th>Country</th>
+            <th>Rewards</th>
+            <th>Poster</th>
+            <th>Metascore</th>
+            <th>imdbRating</th>
+            <th>imdbVotes</th>
+            <th>imdbID</th>
+            <th>Type</th>
+            <th>Response</th>
+        </thead>
+      <tbody>
+
+       </tbody>
+   </table>
+
+</div>
+</div>
+
+<script>
+function countryFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("userdata");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[11];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
